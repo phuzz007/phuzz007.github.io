@@ -1,8 +1,18 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Comic Neue', cursive;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: black;
 }
 
@@ -131,14 +141,18 @@ body {
 }
 
 #blurred-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) perspective(1000px);
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: perspective(1000px);
   width: 80%;
-  max-width: 500px;
+  max-width: 540px;
   height: auto;
-  min-height: 670px;
+  min-height: min(670px, 85vh);
+  max-height: none;
+  overflow: visible;
+  box-sizing: border-box;
+  margin: 6vh auto 0;
   background-color: rgba(0, 0, 0, 0.377);
   border-radius: 20px;
   border: 4px solid rgb(255, 255, 255);
@@ -164,19 +178,21 @@ body {
 
 .links {
   position: absolute;
-  bottom: 20px;
+  bottom: 14px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
   justify-content: center;
   z-index: 1001;
-  width: 100%;
+  width: calc(100% - 24px);
 }
 
 .links a {
   display: flex;
   align-items: center;
-  margin: 0 10px;
+  margin: 0;
   color: #ffffff;
   text-decoration: none;
   transition: color 0.3s;
@@ -432,7 +448,7 @@ body {
 
 .lang-container {
   position: absolute;
-  bottom: 68px;
+  bottom: 92px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -472,6 +488,123 @@ body.video-normal #video-overlay {
   pointer-events: none;
 }
 
+body:not(.video-normal) #skills {
+  display: none;
+}
+
+.skills-section {
+  position: relative;
+  width: min(90%, 900px);
+  box-sizing: border-box;
+  margin: 50px auto 8vh;
+  padding: clamp(24px, 4vw, 40px);
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.48), rgba(12, 13, 24, 0.62));
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 28px rgba(255, 255, 255, 0.22),
+    0 12px 36px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  scroll-margin-top: 24px;
+  transform: perspective(1000px);
+  transition: box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.skills-section:hover {
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.75),
+    0 0 38px rgba(255, 255, 255, 0.38),
+    0 18px 44px rgba(0, 0, 0, 0.48);
+}
+
+.skills-section h2 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 26px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(21px, 3.5vw, 30px);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-shadow: 0 0 22px rgba(125, 92, 255, 0.45);
+}
+
+.skills-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.skill-item {
+  min-width: 0;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.24);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.skill-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(195, 177, 255, 0.7);
+  background: rgba(21, 17, 40, 0.56);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), 0 0 18px rgba(124, 77, 255, 0.2);
+}
+
+.skill-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(12px, 1.8vw, 14px);
+  font-weight: 600;
+}
+
+.skill-heading span:last-child {
+  color: #c7bcff;
+}
+
+.skill-track {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+.skill-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #00d4ff 0%, #7c4dff 52%, #ff4ecd 100%);
+  box-shadow: 0 0 14px rgba(124, 77, 255, 0.45);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: filter 0.3s ease;
+}
+
+.skill-item:hover .skill-track span {
+  filter: brightness(1.2);
+}
+
+body.video-normal .skill-track span {
+  animation: skill-fill 1.2s ease-out forwards;
+}
+
+@keyframes skill-fill {
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .neko {
   transition: left 0.2s ease-out, top 0.2s ease-out;
   will-change: left, top;
@@ -480,7 +613,7 @@ body.video-normal #video-overlay {
 @media screen and (max-width: 768px) {
   #blurred-box {
     width: 90%;
-    min-height: 600px;
+    min-height: min(600px, 85vh);
   }
 
   #profile-picture {
@@ -516,7 +649,7 @@ body.video-normal #video-overlay {
   }
 
   .lang-container {
-    bottom: 50px !important;
+    bottom: 92px !important;
   }
 
   .lang-container img {
@@ -525,7 +658,7 @@ body.video-normal #video-overlay {
   }
 
   .links {
-    bottom: 15px !important;
+    bottom: 12px !important;
   }
 
   .discord-widget {
@@ -545,7 +678,7 @@ body.video-normal #video-overlay {
 
 @media screen and (max-width: 480px) {
   #blurred-box {
-    min-height: 500px;
+    min-height: min(500px, 85vh);
     padding: 10px;
   }
 
@@ -635,7 +768,7 @@ body.video-normal #video-overlay {
   }
 
   .lang-container {
-    bottom: 43px !important;
+    bottom: 88px !important;
   }
 
   .lang-container img {
@@ -665,4 +798,135 @@ body.video-normal #video-overlay {
     height: 18px !important;
   }
 
+  .skills-section {
+    width: calc(100% - 24px);
+    margin-bottom: 32px;
+    padding: 22px 16px;
+    border-radius: 18px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .skill-item {
+    padding: 14px 15px;
+  }
+
+}
+
+/* Keep bio content in normal flow so sections cannot overlap. */
+body.video-normal #blurred-box {
+  display: flex !important;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+  padding: 24px;
+  margin: 6vh auto 0;
+}
+
+body:not(.video-normal) #blurred-box {
+  display: none !important;
+}
+
+#blurred-box #profile-picture {
+  position: relative;
+  order: 1;
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+#blurred-box #avatar-frame {
+  position: absolute;
+}
+
+#blurred-box #username-container {
+  position: relative;
+  top: auto !important;
+  left: auto;
+  order: 2;
+  transform: none;
+  margin: 0;
+}
+
+#blurred-box .badges-container {
+  position: relative;
+  top: auto !important;
+  left: auto;
+  order: 3;
+  transform: none;
+  width: 100%;
+}
+
+#blurred-box .discord-widget {
+  position: relative;
+  top: auto !important;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  order: 4;
+  width: 100%;
+  max-width: 360px;
+  box-sizing: border-box;
+  transform: none !important;
+}
+
+#blurred-box .user-description {
+  position: relative;
+  top: auto !important;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  order: 5;
+  width: 100%;
+  max-width: 450px;
+  transform: none;
+}
+
+#blurred-box .lang-container {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto !important;
+  left: auto;
+  order: 6;
+  width: 100%;
+  transform: none;
+}
+
+#blurred-box .links {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto !important;
+  left: auto;
+  order: 7;
+  flex: 0 0 auto;
+  width: 100%;
+  margin-top: 4px;
+  transform: none;
+}
+
+.skills-section {
+  flex: 0 0 auto;
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  body.video-normal #blurred-box {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body.video-normal #blurred-box {
+    width: 90%;
+    padding: 16px 12px;
+  }
 }

@@ -1,15 +1,18 @@
-#blurred-box {
+#blurred-box,
+.skills-section {
   transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
               box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   will-change: transform;
 }
 
-#blurred-box:hover {
-  transform: translate(-50%, -50%) perspective(1000px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) translateZ(20px);
+#blurred-box:hover,
+.skills-section:hover {
+  transform: perspective(1000px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) translateZ(20px);
 }
 
-#blurred-box::after {
+#blurred-box::after,
+.skills-section::after {
   content: '';
   position: absolute;
   top: 0;
@@ -26,9 +29,10 @@
   transition: opacity 0.6s ease;
   pointer-events: none;
   z-index: 10;
-  border-radius: 20px;
+  border-radius: inherit;
 }
 
-#blurred-box:hover::after {
+#blurred-box:hover::after,
+.skills-section:hover::after {
   opacity: 0.8;
 }
