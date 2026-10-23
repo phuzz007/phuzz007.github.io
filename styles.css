@@ -930,3 +930,206 @@ body:not(.video-normal) #blurred-box {
     padding: 16px 12px;
   }
 }
+/* ===== MOBILE RESPONSIVE FIX ===== */
+@media screen and (max-width: 480px) {
+  /* Main profile card */
+  body.video-normal #blurred-box {
+    width: calc(100% - 24px);
+    max-width: 540px;
+    box-sizing: border-box;
+    padding: 20px 14px;
+    margin: 24px auto 0;
+    gap: 18px;
+    border-radius: 24px;
+  }
+
+  /* Avatar */
+  #blurred-box #profile-picture {
+    width: 100px !important;
+    height: 100px !important;
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  /* Username */
+  #blurred-box #username-container {
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 4px 8px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    font-size: 24px !important;
+  }
+
+  #typing-cursor {
+    font-size: 24px !important;
+  }
+
+  /* Badges */
+  #blurred-box .badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* Discord card */
+  #blurred-box .discord-widget {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px;
+    margin: 0 !important;
+    overflow: hidden;
+  }
+
+  .discord-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .discord-widget .discord-icon img {
+    width: 48px !important;
+    height: 48px !important;
+    max-width: 48px !important;
+    max-height: 48px !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+  }
+
+  .discord-meta {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .discord-meta b {
+    font-size: 16px !important;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    bottom: auto;
+  }
+
+  .discord-meta span,
+  .discord-meta div {
+    font-size: 12px !important;
+  }
+
+  /* Online status dot */
+  #discord-status-dot {
+    margin: 4px 6px 0 0 !important;
+    flex-shrink: 0;
+  }
+
+  /* Discord activity */
+  .discord-activity {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    min-height: 64px !important;
+    padding: 10px !important;
+    font-size: 13px !important;
+    overflow: hidden;
+  }
+
+  #discord-activity-info,
+  #discord-no-activity {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  #discord-album-art {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+  }
+
+  .discord-activity-content {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* Description */
+  #blurred-box .user-description {
+    position: relative;
+    top: auto !important;
+    left: auto;
+    bottom: auto !important;
+    transform: none;
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .user-description p {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 12px;
+    font-size: 15px !important;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  /* Language icons */
+  #blurred-box .lang-container {
+    position: relative;
+    width: 100%;
+    bottom: auto !important;
+    margin: 0;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #blurred-box .lang-container img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Social links */
+  #blurred-box .links {
+    position: relative;
+    width: 100%;
+    bottom: auto !important;
+    margin-top: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 18px;
+  }
+
+  /* Skills section */
+  .skills-section {
+    width: calc(100% - 24px);
+    max-width: 900px;
+    box-sizing: border-box;
+    margin: 24px auto 32px;
+    padding: 20px 14px;
+  }
+
+  .skills-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .skill-item {
+    min-width: 0;
+    padding: 14px 12px;
+  }
+}
